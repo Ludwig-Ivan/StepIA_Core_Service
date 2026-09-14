@@ -96,10 +96,10 @@ public class DocumentoController {
         }
 
         // ==========================================
-        // PUT
+        // Patch
         // ==========================================
 
-        @PutMapping("/{id}")
+        @PatchMapping("/{id}")
         public ResponseEntity<DocumentoResponseDTO> actualizar(
                         @PathVariable UUID id,
                         @Valid @RequestBody DocumentoUpdateDTO dto) {

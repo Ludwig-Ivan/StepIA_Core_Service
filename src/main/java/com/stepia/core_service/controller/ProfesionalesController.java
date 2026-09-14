@@ -77,6 +77,11 @@ public class ProfesionalesController {
                 profesionalesService.findById(id));
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<ProfesionalResponseDTO> findByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(profesionalesService.findByEmail(email));
+    }
+
     // =========================================================
     // UPDATE
     // PUT /api/profesionales/{id}

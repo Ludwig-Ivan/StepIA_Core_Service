@@ -2,7 +2,6 @@ package com.stepia.core_service.dto.informe;
 
 import lombok.*;
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Getter
@@ -35,5 +34,5 @@ public class InformeResponseDTO {
 
     private String observaciones;
 
-    private OffsetDateTime fechaRegistro;
+    private java.sql.Timestamp fechaRegistro;
 }

@@ -5,6 +5,8 @@ import com.stepia.core_service.dto.informe.InformeResponseDTO;
 import com.stepia.core_service.entity.Informe;
 import com.stepia.core_service.mapper.InformeMapper;
 import com.stepia.core_service.repository.InformeRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,14 +73,11 @@ public class InformesService {
     // READ BY PACIENTE
     // =====================================================
 
-    @Transactional(readOnly = true)
-    public List<InformeResponseDTO> findByPaciente(
-            String idPaciente) {
+    public Page<InformeResponseDTO> findByPaciente(String idPaciente, Pageable pageable) {
+        Page<Informe> informes;
+        informes = repository.findByIdPaciente(idPaciente, pageable);
 
-        return repository.findByIdPaciente(idPaciente)
-                .stream()
-                .map(mapper::toResponse)
-                .toList();
+        return informes.map(mapper::toResponse);
     }
 
     // =====================================================

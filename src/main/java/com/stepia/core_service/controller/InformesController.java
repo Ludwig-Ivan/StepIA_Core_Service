@@ -4,6 +4,10 @@ import com.stepia.core_service.dto.informe.InformeCreateUpdateDTO;
 import com.stepia.core_service.dto.informe.InformeResponseDTO;
 import com.stepia.core_service.service.InformesService;
 import jakarta.validation.Valid;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,12 +67,12 @@ public class InformesController {
         // READ BY PACIENTE
         // =====================================================
 
-        @GetMapping("/paciente/{idPaciente}")
-        public ResponseEntity<List<InformeResponseDTO>> findByPaciente(
-                        @PathVariable String idPaciente) {
-
+        @GetMapping("/paciente")
+        public ResponseEntity<Page<InformeResponseDTO>> findByPaciente(
+                        @RequestParam String idPaciente,
+                        @PageableDefault(size = 5) Pageable pageable) {
                 return ResponseEntity.ok(
-                                service.findByPaciente(idPaciente));
+                                service.findByPaciente(idPaciente, pageable));
         }
 
         // =====================================================

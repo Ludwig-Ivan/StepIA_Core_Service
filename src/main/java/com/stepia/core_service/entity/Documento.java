@@ -30,10 +30,19 @@ public class Documento {
     @Column(name = "id_informe", columnDefinition = "uuid")
     private UUID idInforme;
 
+    @Column(name = "id_analisis", columnDefinition = "uuid")
+    private UUID idAnalisis;
+
     @Column(name = "storage_uri", nullable = false, columnDefinition = "TEXT")
     private String storageUri;
 
-    @Column(name = "mime_type", nullable = false, length = 100)
+    @Column(name = "storage_key", nullable = false, length = 100)
+    private String storageKey;
+
+    @Column(name = "nombre_documento", nullable = false)
+    private String nombreDocumento;
+
+    @Column(name = "mime_type", nullable = false)
     private String mimeType;
 
     @Column(name = "tamano_bytes", nullable = false)
@@ -51,7 +60,4 @@ public class Documento {
     @CreationTimestamp
     @Column(name = "fecha_carga", nullable = false)
     private java.sql.Timestamp fechaCarga;
-
-    @Column(name = "descripcion", columnDefinition = "TEXT")
-    private String descripcion;
 }

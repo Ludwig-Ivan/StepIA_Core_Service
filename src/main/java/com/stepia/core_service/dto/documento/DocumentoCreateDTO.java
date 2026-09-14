@@ -18,11 +18,21 @@ public class DocumentoCreateDTO {
 
     private UUID idInforme;
 
+    private UUID idAnalisis;
+
     @NotBlank
     private String storageUri;
 
     @NotBlank
     @Size(max = 100)
+    private String storageKey;
+
+    @NotBlank
+    @NotNull
+    private String nombreDocumento;
+
+    @NotBlank
+    @NotNull
     private String mimeType;
 
     @NotNull
@@ -38,6 +48,4 @@ public class DocumentoCreateDTO {
 
     @NotNull
     private java.sql.Timestamp fechaDocumento;
-
-    private String descripcion;
 }

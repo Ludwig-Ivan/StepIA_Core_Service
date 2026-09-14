@@ -1,9 +1,6 @@
 package com.stepia.core_service.entity;
 
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.CurrentTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,11 +31,22 @@ public class Expediente {
     @Column(name = "fecha_apertura", nullable = false)
     private java.sql.Timestamp fechaApertura;
 
-    @UpdateTimestamp
     @Column(name = "fecha_actualizacion", nullable = false)
     private java.sql.Timestamp fechaActualizacion;
 
-    @CreationTimestamp
     @Column(name = "fecha_registro", nullable = false, updatable = false)
     private java.sql.Timestamp fechaRegistro;
+
+    @PrePersist
+    protected void onCreate() {
+        java.sql.Timestamp ahora = new java.sql.Timestamp(System.currentTimeMillis());
+
+        this.fechaRegistro = ahora;
+        this.fechaActualizacion = ahora;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.fechaActualizacion = new java.sql.Timestamp(System.currentTimeMillis());
+    }
 }

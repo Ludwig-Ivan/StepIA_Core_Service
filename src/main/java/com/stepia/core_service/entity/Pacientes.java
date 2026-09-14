@@ -3,15 +3,14 @@ package com.stepia.core_service.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDate;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "pacientes", schema = "clinico")
@@ -45,11 +44,22 @@ public class Pacientes {
     @Column(name = "domicilio", length = 255, nullable = true)
     private String domicilio;
 
-    @CreationTimestamp
     @Column(name = "fecha_registro", nullable = false)
     private java.sql.Timestamp fechaRegistro;
 
-    @UpdateTimestamp
     @Column(name = "fecha_actualizacion", nullable = false)
     private java.sql.Timestamp fechaActualizacion;
+
+    @PrePersist
+    protected void onCreate() {
+        java.sql.Timestamp ahora = new java.sql.Timestamp(System.currentTimeMillis());
+
+        this.fechaRegistro = ahora;
+        this.fechaActualizacion = ahora;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.fechaActualizacion = new java.sql.Timestamp(System.currentTimeMillis());
+    }
 }

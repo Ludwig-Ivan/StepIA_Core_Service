@@ -70,4 +70,9 @@ public class ExpedienteController {
         return ResponseEntity.ok(
                 service.actualizar(idPaciente, dto));
     }
+
+    @DeleteMapping("/{idExpediente}")
+    public ResponseEntity<ExpedienteResponseDTO> delete(@PathVariable String idExpediente) {
+        return ResponseEntity.ok(service.delete(idExpediente));
+    }
 }

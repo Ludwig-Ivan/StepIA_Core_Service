@@ -20,7 +20,13 @@ public class DocumentoResponseDTO {
 
     private UUID idInforme;
 
+    private UUID idAnalisis;
+
     private String storageUri;
+
+    private String storageKey;
+
+    private String nombreDocumento;
 
     private String mimeType;
 
@@ -31,7 +37,5 @@ public class DocumentoResponseDTO {
     private Integer version;
 
     private java.sql.Timestamp fechaDocumento;
-
-    private String descripcion;
 
 }

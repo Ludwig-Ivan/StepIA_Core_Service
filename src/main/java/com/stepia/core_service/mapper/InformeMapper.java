@@ -57,6 +57,7 @@ public class InformeMapper {
         response.setTratamiento(informe.getTratamiento());
         response.setEvolucion(informe.getEvolucion());
         response.setObservaciones(informe.getObservaciones());
+        response.setFechaRegistro(informe.getFechaRegistro());
         return response;
     }
 }

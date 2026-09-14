@@ -109,4 +109,12 @@ public class ExpedienteService {
 
                 return mapper.toResponseDTO(actualizado);
         }
+
+        public ExpedienteResponseDTO delete(String idExpediente) {
+                Expediente exp = repository.findById(idExpediente).orElseThrow(() -> new IllegalArgumentException(
+                                "No existe este expediente: "
+                                                + idExpediente));
+                repository.delete(exp);
+                return mapper.toResponseDTO(exp);
+        }
 }

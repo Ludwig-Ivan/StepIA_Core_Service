@@ -5,8 +5,6 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 @Entity
 @Table(name = "informes_clinicos", schema = "clinico")
 @Getter
@@ -53,7 +51,12 @@ public class Informe {
     @Column(name = "observaciones", columnDefinition = "TEXT")
     private String observaciones;
 
-    @CreationTimestamp
     @Column(name = "fecha_registro", nullable = false, updatable = false)
     private java.sql.Timestamp fechaRegistro;
+
+    @PrePersist
+    protected void onCreate() {
+        java.sql.Timestamp ahora = new java.sql.Timestamp(System.currentTimeMillis());
+        this.fechaRegistro = ahora;
+    }
 }
