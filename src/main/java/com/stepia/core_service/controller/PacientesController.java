@@ -7,7 +7,6 @@ import com.stepia.core_service.dto.pacientes.PacientesResponseDTO;
 import com.stepia.core_service.dto.pacientes.PacientesUpdateDTO;
 import com.stepia.core_service.service.PacientesService;
 import jakarta.validation.Valid;
-import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
