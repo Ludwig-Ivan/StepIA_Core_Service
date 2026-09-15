@@ -13,32 +13,28 @@ import java.util.List;
 @Configuration
 public class SecurityConfig {
 
-    // @Bean
-    // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws
-    // Exception {
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-    // http
-    // .cors(cors -> cors.configurationSource(corsConfigurationSource())) // 👈
-    // NUEVO
-    // .csrf(csrf -> csrf.disable())
-    // .authorizeHttpRequests(auth -> auth
-    // .anyRequest().permitAll());
+        http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll());
 
-    // return http.build();
-    // }
+        return http.build();
+    }
 
-    // @Bean
-    // public CorsConfigurationSource corsConfigurationSource() {
-    // CorsConfiguration configuration = new CorsConfiguration();
-    // configuration.setAllowedOrigins(List.of("*")); // ajusta a tu dominio en
-    // producción
-    // configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE",
-    // "OPTIONS", "PATCH"));
-    // configuration.setAllowedHeaders(List.of("*"));
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("*"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE",
+                "OPTIONS", "PATCH"));
+        configuration.setAllowedHeaders(List.of("*"));
 
-    // UrlBasedCorsConfigurationSource source = new
-    // UrlBasedCorsConfigurationSource();
-    // source.registerCorsConfiguration("/**", configuration);
-    // return source;
-    // }
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 }
